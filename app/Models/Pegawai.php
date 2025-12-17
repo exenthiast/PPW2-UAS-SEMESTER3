@@ -11,8 +11,10 @@ class Pegawai extends Model
     
     protected $table = 'pegawai';
 
-    public function pegawai()
+    protected $guarded = ['id'];
+
+    public function pekerjaan()
     {
-        return $this->hasOne(Pekerjaan::class);
+        return $this->belongsTo(Pekerjaan::class, 'pekerjaan_id');
     }
 }
