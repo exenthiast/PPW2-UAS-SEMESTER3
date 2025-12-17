@@ -11,7 +11,7 @@ class PekerjaanController extends Controller
 {
     public function index(Request $request) {
         $keyword = $request->get('keyword');
-        $data = Pekerjaan::when($keyword, function ($query) use ($keyword) {
+        $data = Pekerjaan::whitCount($keyword, function ($query) use ($keyword) {
             $query->where('nama', 'like', "%{$keyword}%")->orWhere('deskripsi', 'like', "%{$keyword}%");
         })->paginate(5);
         return view('pekerjaan.index', compact('data'));
